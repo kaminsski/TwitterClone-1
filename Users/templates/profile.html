@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock title %}
+{% block content %}
+
+
+
+
+
+<div class="profileContainer">
+  <div class="row ">
+  <div class="col-xl-3">
+<div class="card ">
+    <img src="{{user.handleAvatar}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><span>User:</span>{{user.username}}</h5>
+      <p class="card-text"> {{user.about}} </p>
+    </div>
+    <ul class="list-group list-group-flush">
+      {% if request.user.is_Confirm == True %}
+      {% if userFollow %}
+      
+      <li class="list-group-item"><a href={% url 'addFollow' request.user.id user.id %}><button type="button" class="btn btn-primary followButton">Unfollow</button></a></li>
+
+      {% else %}
+      <li class="list-group-item"><a href={% url 'addFollow' request.user.id user.id %}><button type="button" class="btn btn-primary followButton">Follow</button></a></li>
+
+      {% endif %}
+      {% endif %}
+      
+      <li class="list-group-item"><span>Followers:</span> {{user.takipciSayisi}}</li>
+      <li class="list-group-item"><span>Following:</span>{{user.takipEdilenSayisi}}</li>
+      
+
+
+      <li class="list-group-item"><span>Name:</span> {{user.first_name}}</li>
+      <li class="list-group-item"><span>Surname:</span>{{user.last_name}}</li>
+      <li class="list-group-item"><span>Country:</span> {{user.country}}</li>
+      <li class="list-group-item"><span>City:</span>{{user.city}}</li>
+      <li class="list-group-item"><span>Education:</span>{{user.education}}</li>
+      <li class="list-group-item"><span>Birthday:</span>{{user.bornDate}}</li>
+
+      {% if request.user == user or request.user.is_superuser %}
+      <li class="list-group-item"><a href="{% url 'upProfile' user.id %}" class="card-link">Edit Profile</a></li>
+      <li class="list-group-item"><a href="{% url 'upPassword' user.id %}" class="card-link">Change Password</a></li>
+      <li class="list-group-item"><a href={% url 'deleteProfile' user.id %} class="card-link">Delete Account</a></li>
+      {% endif %}
+      {% if request.user.is_Confirm == True %}
+      <li class="list-group-item">   
+        
+      
+        <form class="formRegister" action="{% url 'profile' user.id %}" method="POST" >
+        {% csrf_token %}
+        {{form}}
+        
+        <button type="submit" class="btn btn-success">Send</button>
+      </form> </li>
+      {% endif %}
+    </ul>
+    
+  </div>
+</div>
+<div class="col-xl-9">
+  {% for message in messages %}
+
+  <div class="alert alert-{{message.tags}}" role="alert">
+  {{message}}
+  </div>
+  {% endfor %}
+  <div class="profileText">
+  </div>
+    {% if request.user.id == user.id %}
+    <h2>Your Tweets</h2>
+    {% else %}
+    <h2> {{user.username}}'s tweeets</h2>
+    {% endif %}
+    
+    {% include "components/_tweet.html" %}
+  </div>
+</div>
+</div>
+
+<script>
+  var flash = document.querySelector(".alert")
+  console.log(flash)
+  setTimeout(function(){ 
+    flash.style.display = "none"; 
+ }, 3000);
+
+</script>
+
+
+{% endblock content %}

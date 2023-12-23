@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}UpdateProfile{% endblock title %}
+{% block content %}
+<form class="formEdit" action="{% url 'upProfile' request.user.id %}" method="POST" enctype = "multipart/form-data" autocomplete="off">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit" class="btn btn-success mt-4 d-block">Update</button>
+    </form>
+{% endblock content %}

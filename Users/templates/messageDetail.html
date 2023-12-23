@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Message Detail{% endblock title %}
+{% block content %}
+
+
+
+
+
+  <div class="card text-center">
+    <div class="card-header">
+      
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{dm.sender}}'s message</h5>
+      <p class="card-text">{{dm.message}}</p>
+      <a href={% url 'messages' %} class="btn btn-primary">Go messages</a>
+
+        <form class="formRegister" action="{% url 'profile' user.id %}" method="POST" autocomplete="off" >
+        {% csrf_token %}
+        {{form}}
+        
+        <button type="submit" class="btn btn-success">Reply</button>
+    </div>
+    <div class="card-footer text-muted">
+        {{dm.createdAt}}
+    </div>
+  </div>
+
+
+{% endblock content %}

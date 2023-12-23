@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block title %}Homepage{% endblock title %}
+{% block content %}
+
+
+<form action={% url 'home' %} method="POST" enctype = "multipart/form-data" autocomplete="off">
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Create Tweet</h1>
+        
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% csrf_token %}
+          {{form}}
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Share</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row flex-column-reverse flex-lg-row">
+
+  <div class="col-lg-9">
+    {% for message in messages %}
+
+<div class="alert alert-success" role="alert">
+{{message}}
+</div>
+{% endfor %}
+    {% if request.user.is_Confirm == False %}
+<h6 class="confirmInfo">Your account has not been confirmed yet. You cannot interact right now</h6>
+{% endif %}
+
+    {% if request.user.is_authenticated%}
+    {% if request.user.is_Confirm == True %}
+
+    <div class="createButton text-center">
+    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Create Tweet
+    </button>
+  </div>
+    {% endif %}
+    {% endif %}
+
+
+    {% include "components/_tweet.html" %}
+  </div>
+    <div class="col-lg-3">
+      <div class="bestTweet">
+      <h3><a href={% url 'trends' %}>Best Tweet</a></h3>
+      <div class="indexBestContainer">
+        {% for likedtweet in likedtweets %}
+        {% if likedtweet.user.is_active == True %}
+        <div class="likedTweet">
+        <a style="overflow:hidden" href={% url 'tweetDetail' likedtweet.id %}>{{likedtweet.tweetTitle}}</a>  
+        <div class="likedTweetRight">
+          <i class="fa-solid fa-chart-simple"></i>
+        <p> {{likedtweet.likeQuatity|add:likedtweet.commentQuatity}} </p>
+      </div>
+      </div>
+      {% endif %}
+        {% endfor %}
+      </div>
+      </div>
+      <div class="reports">
+        {% if request.user.is_superuser %}
+        <h3><a href={% url 'reports' %}>Reports</a></h3>
+        {% for report in reports %}
+        <div class="reportObject">
+        <h5> {{report.sender}} </h5>
+        <p> {{report.description}} </p>
+      </div>
+        {% endfor %}
+        {% endif %}
+      </div>  
+    </div>
+</div>
+  
+
+<script>
+  var flash = document.querySelector(".alert")
+  console.log(flash)
+  setTimeout(function(){ 
+    flash.style.display = "none"; 
+ }, 3000);
+
+</script>
+
+
+{% endblock content %}

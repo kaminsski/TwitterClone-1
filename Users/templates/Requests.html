@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Requests{% endblock title %}
+{% block content %}
+<h2 style="text-align:center">Account Confirmations</h2>
+{% for user in users %}
+
+<div class="requestsAll">
+    
+<div class="requestsContainer">
+<h3>{{user.username}}</h3>
+<div class="requestsIcon">
+<a href={% url 'confirmUser' user.id%}><i class="fa-solid fa-check"></i></a>
+<a href={% url 'deleteProfile' user.id %}><i class="fa-solid fa-xmark"></i></a>
+</div>
+</div>
+</div>
+
+{% empty %} <div class="requestsAll"> <h3 class="requestsContainer">All accounts are verified</h3></div>
+{% endfor %}
+<h2 style="text-align:center">Moderator Confirmations</h2>
+{% for moderator in moderators %}
+{% if moderator.id != 1 %}
+<div class="requestsAll">
+    
+<div class="requestsContainer">
+<h3>{{moderator.username}}</h3>
+<div class="requestsIcon">
+<a href={% url 'createMod' moderator.id%}><i class="fa-solid fa-angles-up"></i></a>
+
+</div>
+</div>
+</div>
+{% endif %}
+{% empty %} <div class="requestsAll"> <h3 class="requestsContainer">There are no moderator requests</h3></div>
+{% endfor %}
+{% endblock content %}

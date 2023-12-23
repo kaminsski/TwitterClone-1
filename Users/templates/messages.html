@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Messages{% endblock title %}
+{% block content %}
+
+<h2>Your Messages</h2>
+{% for message in recipients %}
+    <div class="recipients {% if message.is_Read == False %}bg-warning{% endif %}">
+    <h4> {{message.sender}} </h4>
+
+    <a href={% url 'messageDetail' message.id %}><h6> {{message.message}} </h6></a>
+    <p> {{message.createdAt}} </p>
+    </div>    
+    {% empty %}
+    <h4 class="noMessage">You have no messages</h4>
+{% endfor %}
+
+<h2>Sent Messages</h2>
+{% for message in messages %}
+    <div class="message">
+    <h4> To:{{message.recipient}} </h4>
+    <h6> {{message.message}} </h6>
+    <p> {{message.createdAt}} </p>
+    </div>
+    {% empty %}
+    <h4 class="noMessage">You have never sent a message before</h4>
+{% endfor %}
+
+{% endblock content %}

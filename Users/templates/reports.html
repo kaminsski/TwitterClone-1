@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Reports{% endblock title %}
+{% block content %}
+{% for message in messages %}
+<div class="alert alert-warning text-center" role="alert">
+    {{message}}
+    </div>
+    {% endfor %}
+
+{% for report in reports %}
+
+<div class="reportContainer">
+ 
+    <h4>Report Sender</h4> <h6>{{report.sender}}</h6><hr>
+    <h4>Report Description</h4> <h6>{{report.description}} </h6>
+    <div class="row myrow">
+    <div class="reportBottom">
+     
+        <div class="col-lg-4">
+        <div class="reportTextContainer">
+            <h4>Tweet User</h4><h6> {{report.tweet.user}} </h6>
+            <h4>Tweet Title</h4><h6>  {{report.tweet.tweetTitle}} </h6>
+            <h4>Tweet Description</h4><h6>  {{report.tweet.tweetDescription}} </h6>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="reportImg">
+            <img width="100%%" src={{report.tweet.tweetImage}} alt="">
+        </div>
+    </div>
+    <div class="col-lg-4">    
+        <div class="reportLinks">
+            <a href={% url 'userBan' report.tweet.user.id report.id%}>Ban User</a><br>
+            <a href={% url 'deleteReport' report.id%}>Delete Report</a>
+        </div>    
+    </div>
+    </div>
+ </div>  
+</div>
+{% empty %}
+    <h4 class="noMessage">There are no reports yet</h4>
+{% endfor %}
+
+<script>
+    var flash = document.querySelector(".alert")
+    console.log(flash)
+    setTimeout(function(){ 
+      flash.style.display = "none"; 
+   }, 3000);
+  
+  </script>
+{% endblock content %}

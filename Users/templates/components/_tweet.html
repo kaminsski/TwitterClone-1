@@ -1,0 +1,130 @@
+
+
+
+{% for tweet in tweets %}
+{% if tweet.user.is_active == True %}
+
+<div class="tweetContainer">
+  <div style="background-color:{{tweet.user.userColor}}" class="tweetTopContainer">
+      <div class="tweetTopProfile">
+        <img id="imageNav" src="{{tweet.user.handleAvatar}}" alt=""> 
+        <h3> <a class="profileHover" href={% url 'profile' tweet.user.id %}>{{tweet.user}} </a></h3>
+      </div>
+        <h3 style='font-size:20px'> {{tweet.createdAt}} </h3>
+      </div> 
+      <div class="tweetTextContainer">
+
+        {% if request.user.is_Confirm == True %}
+      {% if request.user.is_superuser or request.user.id == tweet.user.id or is_Mod%}
+
+          <div class="tweetFunction">
+            <a title="Report"  href={% url 'reportTweet' tweet.id request.user.id%}><i class="fa-solid fa-ban"></i></a>
+            <a title="Delete" onclick="deleteTweet(event, '{{tweet.id}}')" ><i class="fa-solid fa-xmark"></i></a>
+            <a title="Edit"  href={% url 'upTweet' tweet.id %}><i class="fa-solid fa-pen-to-square"></i></a>
+          </div>
+      {% else %}          <div class="tweetFunction">
+        <a title="Report"  href={% url 'reportTweet' tweet.id request.user.id%}><i class="fa-solid fa-ban"></i></a>
+      </div>
+      {% endif %}
+      {% endif %}
+      
+      <h3> <a class="titleHover" href={% url 'tweetDetail' tweet.id %}>{{tweet.tweetTitle}} </a></h3>
+    <hr>
+        <p class="over"> {{tweet.tweetDescription}} </p>
+         
+        
+
+        
+        
+        <img src={{tweet.handleImage}} class="tweetImg" alt="">
+
+
+       {% if tweet.handleImage|slice:"-3:" == "mp4" %}
+        <video width="100%%" height="auto" controls >
+          <source src="{{tweet.handleImage}}" type="video/mp4">
+        </video>
+        {% endif %}
+      </div>
+      <div class="interactionContainer">
+        
+
+        <div class="likeContainer">
+          {% if request.user.is_authenticated and request.user.is_Confirm == True%} 
+          <a href={% url 'addLike' request.user.id tweet.id %}>{% endif %}
+            {% for like in postLikes %}
+            {% if  like.tweet.tweetTitle == tweet.tweetTitle and like.user.id == request.user.id and request.user.is_authenticated %}
+            <i class="fa-solid fa-heart text-danger"></i></a>
+            
+            {% endif %}
+            {% empty %}<i class="fa-regular fa-heart"></i></a>
+            {% endfor %}
+            <i class="fa-regular fa-heart"></i></a>
+            
+          <span> {{tweet.likeQuatity}} </span>
+        </div>
+        
+        
+        <div class="commentContainer">
+          <i data-bs-toggle="collapse" data-bs-target="#collapse{{tweet.id}}" aria-expanded="true" aria-controls="collapse{{tweet.id}}" class="fa-regular fa-comment" ></i>
+          <span> {{ tweet.commentQuatity }} </span>
+        </div>
+      </div>
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+       
+          <div id="collapse{{tweet.id}}" class="accordion-collapse collapse " aria-labelledby="heading{{tweet.id}}" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+            {% for comment in comments %}
+              {% if comment.tweet.id == tweet.id %}
+              <div style="background-color:{{comment.author.userColor}}"  class="commentsContainer">
+                <div class="commentTop">
+                   <h3>{{comment.author}}</h3>
+                   {% if request.user.is_superuser or request.user.id == comment.author.id or is_Mod%}
+                  <div class="commentFunction">
+                    <a href={% url 'deleteComment' comment.id comment.tweet.id%}><i class="fa-solid fa-xmark"></i></a>
+                    <a href={% url 'upComment' comment.id comment.tweet.id %}><i class="fa-solid fa-pen-to-square"></i></a>
+                  </div>
+                  {% endif %}
+                </div>
+                   <hr>
+                   <p> {{comment.message}} </p>
+                   <p> {{comment.createdAt}} </p>
+              </div>
+               
+            
+              {% endif %}
+                   
+
+            
+         
+
+            {% endfor %}
+            {% if request.user.is_authenticated and request.user.is_Confirm == True%}
+            <form action="{% url 'tweetDetail' tweet.id %}" method="POST">
+              {% csrf_token %}
+            {{form1}}
+            <button type="submit" class="btn btn-success mt-3">Reply</button>
+          </form>{% endif %}
+             
+            </div>
+          </div>
+        </div>
+        
+    </div>
+    </div>
+    {% endif %}
+    {% empty %}
+    <div class="noneTweetContainer">
+    <h5>No tweets yet</h5></div>
+
+    {% endfor %}
+
+    <script>
+      function deleteTweet(event, tweetId){
+        event.preventDefault()
+        const onay= window.confirm("Tweeti silmek istiyor musun?")
+        if (onay){
+          window.location = `/delete/${tweetId}`
+        }
+      }
+    </script>

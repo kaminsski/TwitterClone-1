@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}ReportTweet{% endblock title %}
+{% block content %}
+
+<form autocomplete="off" class="formReport" action="{% url 'reportTweet' reporttweet.id request.user.id%}" 
+      method="POST" enctype = "multipart/form-data">
+      
+      <h5>You are currently reporting <strong>{{reporttweet.user}}</strong>'s tweet titled <strong>{{reporttweet.tweetTitle}}</strong>.</h5>
+    {% csrf_token %}
+    {{reportform}}
+    <button type="submit" class="btn btn-success">Report</button>
+    </form>
+{% endblock content %}

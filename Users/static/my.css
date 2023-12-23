@@ -1,0 +1,660 @@
+body{
+    background-color: #ADD8E6 ;
+}
+.container{
+    background-color: #f1f1f1;
+}
+a{
+    text-decoration: none;
+}
+p{
+    word-wrap: break-word;
+
+}
+h4{
+    word-wrap: break-word;
+
+}
+
+/* none start*/
+.noneTweetContainer{
+    background-color: white;
+    width: 100%;
+    text-align:center; 
+    height:100px ;
+    display:flex; 
+    justify-content: center;
+    align-items:center;
+    padding: 15px;
+    margin-top: 30px;
+   
+}
+/* none end*/
+
+
+
+/* nav start*/
+.active1{
+    color: #00acee;
+}
+nav{
+    background-color: rgb(255, 255, 255);
+    font-size: 25px;
+    font-weight: 700;
+    height: 100px;
+}
+#twitterBrand{
+    font-size: 60px;
+}
+
+
+
+
+#navi{
+    
+    
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.naviLeft{
+    display: flex;
+    column-gap: 20px;
+    
+  
+}
+.naviLeft a:after {
+    display:block;
+    content: '';
+    width: inherit;
+    border-bottom: solid 3px black;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+  }
+  
+.naviLeft a:hover:after { transform: scaleX(1); }
+.naviRight{
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+    border-radius: 20px;
+}
+.naviRight a:after {
+    display:block;
+    content: '';
+    width: inherit;
+    border-bottom: solid 3px black;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+  }
+  
+.naviRight a:hover:after { transform: scaleX(1); }
+.dropdown{
+    background-color: #c0edff;
+    border-radius: 10px;
+}
+#imageNav{
+    width: 60px;
+    height: 60px;
+    border-radius: 300px;
+    display: inline;
+}
+/* nav end*/
+
+/* tweet start */
+.tweetContainer{
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    width: 100%;
+    margin: 20px 0px;
+
+    
+}
+.tweetContainer img{
+    display: block;
+    
+  
+}
+.tweetContainer a{
+    text-decoration: none;
+    color: darkblue;
+}
+.fa-xmark{
+    color: red;
+    border-radius: 1000px;
+}
+.fa-xmark:hover{
+    background-color: red;
+    color: white;
+    transition: 0.5s;
+}
+
+.fa-ban{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    border-radius: 1000px;
+}
+.fa-ban:hover{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    transition: 0.5s;
+    border: solid 1px black;
+}
+
+.fa-pen-to-square{
+    color: rgb(17, 0, 255);
+    border-radius: 1000px;
+    padding: 5px;
+}
+.fa-pen-to-square:hover{
+    background-color: rgb(17, 0, 255);
+    color: white;
+    transition: 0.5s;
+}
+.fa-heart:hover{
+    font-size: 20px;
+}
+.fa-comment{
+    cursor: pointer;
+}
+
+
+
+.tweetContainer h3{
+    display: inline;
+}
+.over{
+    word-wrap: break-word;
+}
+.interactionContainer{
+    background-color: rgb(211, 207, 207);
+    height: 40px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 20px;
+}
+.likeContainer{
+    margin-right: 20px;
+}
+.likeContainer i:nth-child(2){
+    display: none;
+}
+.tweetTextContainer{
+   padding: 20px;
+}
+.tweetTopContainer{
+   
+    border-radius:30px 30px 0px 0px;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 20px;
+    padding:0px 20px;
+    
+}
+.accordion{
+    border-radius: 0px 0px 30px 30px;
+}
+.tweetFunction{
+    text-align: end;
+    font-size: 30px;
+}
+.tweetImg{
+    width: 100%;
+    height: auto;
+}
+.commentsContainer{
+    background-color: rgb(229, 243, 191);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+}
+.commentTop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.profileHover:hover{
+    border-left: solid 30px rgb(255, 255, 255);
+    border-radius: 300px;
+    padding: 5px;
+}
+
+.titleHover:hover {
+    border-left: solid 30px rgb(0, 0, 0);
+    border-radius: 300px;
+    padding: 10px;
+  }
+
+
+/* tweet end */
+
+
+/* index start */
+.col-9{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.bestTweet{
+    background-color: rgb(255, 255, 255);
+    padding: 5px;
+}
+.indexBestContainer{
+    background-color: #c0edff;
+    padding: 5px;
+
+}
+.reports{
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+
+}
+.reportObject{
+    background-color: #c0edff;
+    padding: 5px;
+
+}
+.modal input{
+    display: block;
+}
+.modal label{display: block;}
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+.likedTweet{
+    display: flex;
+    justify-content: space-between;
+
+}
+.likedTweetRight{
+    display: flex;
+    align-items: center;
+}
+.confirmInfo{
+    background-color: #d4d4d4;
+    padding: 20px;
+    border-radius: 30px;
+}
+.btn-primary{
+    outline: 3px solid #0d6efd;
+    border: none;
+    transition: all ease .5s;
+}
+.btn-primary:hover, .btn-primary:focus{
+    outline-offset: 5px;
+}
+/* index end */
+
+
+/* profile start */
+
+.card-img-top{
+    
+    height: auto;
+}
+.list-group-item span{
+    color: rgb(37, 129, 156);
+    font-weight: 700;
+    margin-right: 5px;
+}
+.card-body span{
+    color: rgb(37, 129, 156);
+    font-weight: 700;
+    margin-right: 5px;
+}
+.reqSpan{
+    font-weight: 600;
+    color: rgb(255, 1, 1);
+}
+.profileContainer{
+    display: flex;
+    justify-content: space-around;
+    column-gap: 50px;
+    
+}
+.profileContainer h2{
+    text-align: center;
+}
+.followButton{
+    width: 100%;
+}
+.formEdit label{
+    text-align: start;
+    display: block;
+    font-weight: 700;
+    margin: 5px 0px;
+}
+.formEdit input{
+    display: block;
+    width: 100%;
+}
+#id_message{
+    height: 120px;
+    margin-top: 1px;
+    width: 100%;
+}
+/* profile end */
+
+/* detail start */
+#detailImg{
+    width: 100%;
+}
+.col-12{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ 
+}
+.col-12 i{
+    font-size: 30px;
+}
+.col-12 textarea{
+    display: block;
+    width: 100%;
+    height: 70px;
+}
+/* detail end */
+
+
+/* Login start */
+
+.loginContainer{
+   
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    align-items: center;
+    background-color: #fff;
+    width: 100%;
+    padding: 30px;
+    
+
+}
+.loginContainer button{
+  
+    width: 100px;
+    border-radius: 30px;
+}
+.loginTitle{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.btn-success{
+    outline: 3px solid #198754;
+    border: none;
+    transition: all ease .5s;
+}
+.btn-success:hover, .btn-success:focus{
+    outline-offset: 5px;
+}
+/* Login end */
+
+
+/* Register start */
+.formRegister{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    align-items: center;
+}
+
+.formRegister input{
+    display: block;
+    width: 70%;
+}
+.formRegister select{
+    display: block;
+    width: 70%;
+
+}
+.registerAll{
+    display: flex;
+    justify-content: center;
+}
+.registerContainer{
+   
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    align-items: center;
+    background-color: #fff;
+    padding: 30px;
+    
+
+}
+.registerContainer button{
+
+    width: 100px;
+    border-radius: 30px;
+}
+.registerTitle{
+    text-align: center;
+    margin-bottom: 30px;
+}
+.registerContainer label{
+    font-weight: 700;
+}
+
+/* Register end */
+
+/* report start */
+.reportContainer{
+    background-color:rgb(255, 255, 255) ;
+    padding: 10px;
+    margin-bottom: 20px;
+
+}
+.reportContainer h4{
+    font-weight: 700;
+}
+.reportBottom{
+    display: flex;
+    justify-content: space-between;
+    background-color: #c0edff;
+    align-items: center ;
+    width: 95%;
+    border-radius: 40px;
+}
+
+
+.col-lg-4{
+    text-align: center;
+    
+}
+
+.col-8 h2{
+    text-align: center;
+    
+}
+.reportContainer h6{
+    color: rgb(0, 0, 0);
+}
+.myrow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.reportContainer a{
+    font-weight: 800;
+}
+/* report end */
+
+
+/* messages start */
+.recipients{
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.message{
+    background-color: rgb(203, 255, 201);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.noMessage{
+    background-color: white;
+    padding: 20px;
+}
+
+/* messages end */
+
+/* trends start */
+.trendsCard{
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+.trendsCard img{
+    width: 100%;
+    height: 100px;
+}
+
+/* trends end */
+
+/* forms start */
+.formReport{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+}
+#id_description{
+width: 50%;
+}
+
+/* forms end */
+
+/*======================
+    404 page
+=======================*/
+
+
+.page_404{  background:#fff; font-family: 'Arvo', serif;
+}
+
+.page_404  img{ width:100%;}
+
+.four_zero_four_bg{
+ 
+ background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    height: 400px;
+    background-position: center;
+ }
+ 
+ 
+ .four_zero_four_bg h1{
+ font-size:80px;
+ }
+ 
+  .four_zero_four_bg h3{
+			 font-size:80px;
+			 }
+			 
+			 .link_404{			 
+	color: #fff!important;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    display: inline-block;}
+	.contant_box_404{ margin-top:-50px;}
+
+    /* request start */
+
+.requestsAll{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+}
+.requestsContainer{
+    display: flex;
+    justify-content: space-around;
+    background-color: #fff;
+    align-items: center;
+    width: 60%;
+    font-size: 30px;
+}
+.fa-check{
+    color: #39ac31;
+}
+.fa-check:hover{
+    background-color: #39ac31;
+    color: white;
+    border-radius: 300px;
+    transition: 0.5s;
+}
+.fa-angles-up:hover{
+    background-color: blue;
+    color: white;
+    border-radius: 20px;
+}
+
+    /* request end */
+
+/* Footer start */
+footer{
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    column-gap: 20%;
+    margin-top: 400px;
+  
+}
+.adres{
+
+    padding-right: 10%;
+    padding-bottom: 1%;
+}
+.adres h6{
+    margin-top: 5%;
+    font-size: 25px;
+}
+.adres p{
+    margin-bottom: 5%;
+}
+.footer_social h5{
+    margin-top: 10%;
+    font-size: 15px;
+}
+.footer_social h6{
+    margin-top: 10%;
+    font-size: 10px;
+}
+.socials-2{
+    margin-top: 10%;
+    font-size: 30px;
+    
+}
+.socials-2 a i{
+    color: white;
+}
+.socials-2 a i:hover{
+    color: rgb(119, 117, 117);
+}
+.btn-group{
+    display: none;
+}
+
+/* Footer end */    
+
+@media screen and (max-width:991px){
+    .reportBottom{
+        display: block;
+    }
+    footer{
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+    }
+    .btn-group{
+        display: block;
+    }
+
+}
